@@ -251,6 +251,8 @@ $app_name = idx($app_info, 'name', '');
 
 
       <?php } else { ?>
+
+      
       <div>
         <h1>Welcome</h1>
         <div class="fb-login-button" data-scope="user_likes,user_photos"></div>
@@ -344,10 +346,11 @@ $app_name = idx($app_info, 'name', '');
         </ul>
       </div>
 
+
+
       <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
       <!-- The user's friends who use this app, called by Graph API-->
       <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-
       <div class="list">
         <h3>Friends using this app</h3>
         <ul class="friends">
