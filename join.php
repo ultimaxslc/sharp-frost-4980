@@ -68,7 +68,11 @@
 <title>Download & Play, Feedback & Win!</title>
 	<meta name="description" content="Twitter Bootstrap Version2.0 horizontal form layout example from w3resource.com.">
 	<!-- This helps to detect and auto adjust to the device scale -->
-	<meta name="viewport" content="width=device-width, intitial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- jQuery file goes here-->
+	<!--script src="js/jquery.tools.min.js"> </script>
+	<!-- the javascript as explained-->
+	<!--script src="js/forms.js"></script>
 	<!-- This imports the css file. -->
 	<link href="stylesheets/bootstrap.css" rel="stylesheet">
 </head>
@@ -80,7 +84,7 @@
 	<!-- MY FORM BEGINS HERE -->
 
 	<tr>
-		<form enctype="multipart/form-data" class="form-horizontal" name="submission" method="post" action="submit.php">
+		<form enctype="multipart/form-data" id="submission" class="form-horizontal" name="submission" method="post" action="submit.php">
 			<td>
 			<table width = "100%" border = "0" cellpadding = "3" cellspacing = "1">
 				<tr>
@@ -90,30 +94,30 @@
 					<td colspan = "3" width="100%">
 						<p align="center">Download any of the software over at developerWorks. Take a spin of the software, and take a screenshot of aspect you wish to feedback!
 							Submit your feedback along with screenshot, and stand a chance to win free certification for IBM products!</p>
-						<div align = "center"><textarea class="input-xlarge" rows ="5" style="resize:none">Feedback goes here!</textarea>
+						<div align = "center"><textarea class="input-xlarge" rows ="5" style="resize:none" placeholder="Feedback goes here!" autofocus></textarea>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td colspan = "2">
-					<label class="control-label" for="f_name"> First Name:</label> <input class="input-xlarge" name="f_name" type="text" id="f_name" value="From Graph API">
+					<label class="control-label" for="f_name"> First Name:</label> <input class="input-xlarge" name="f_name" type="text" id="f_name" required="required" value="From Graph API">
 					</td>
-					<td colspan = "2"><label class="control-label" for="l_name"> Last Name:</label> <input class="input-xlarge" name="l_name" type="text" id="l_name" value="From Graph API"></td>
+					<td colspan = "2"><label class="control-label" for="l_name"> Last Name:</label> <input class="input-xlarge" name="l_name" type="text" id="l_name" required="required" value="From Graph API"></td>
 				</tr>
 
 				<tr>
 					<td colspan = "2">
-					<label class="control-label" for="occupation"> Occupation:</label> <input class="input-xlarge" name="occupation" type="text" id="occupation" value="">
+					<label class="control-label" for="occupation"> Occupation:</label> <input class="input-xlarge" name="occupation" type="text" required="required" id="occupation">
 					</td>
-					<td><label class="control-label" for="email"> Email:</label> <input class="input-xlarge" name="email" type="text" id="email" value="From Graph API"></td>
+					<td><label class="control-label" for="email"> Email:</label> <input class="input-xlarge" name="email" type="email" id="email" required="required" value="From Graph API"></td>
 
 				</tr>
 
 				<tr>
 					<td colspan = "2">
-					<label class="control-label" for="country"> Country:</label> <input class="input-xlarge" name="country" type="text" id="country" value="From Graph API">
+					<label class="control-label" for="country"> Country:</label> <input class="input-xlarge" name="country" type="text" id="country" required="required" value="From Graph API">
 					</td>
-					<td><label class="control-label" for="contactno"> Contact No:</label> <input class="input-xlarge" name="contactno" type="text" id="contactno" value=""></td>
+					<td><label class="control-label" for="contactno"> Contact No:</label> <input class="input-xlarge" name="contactno" type="text" required="required" id="contactno" value=""></td>
 
 				</tr>
 
@@ -122,7 +126,7 @@
 					<td colspan = "2">
 						<label class="control-label" for="upload">Screenshot Image (image should be < 512 kB)</label>
 						<div class="controls">
-         	     			<input class="input-file" id="upload" type="file" name="upload">
+         	     			<input class="input-file" id="upload" type="file" name="upload" required="required">
           				</div>
 					</td>
 
@@ -142,10 +146,23 @@
 					<td colspan = "3"><center><input type ="submit" name="submit" value="Submit!" /></center></td>
 				</tr>
 			</td>
+		</form>
 	</tr>
 
 
 </table>
+
+<script> 
+	$("submission").validator(); 
+	// initialize validator for a bunch of input fields
+  	var inputs = $("#form :input").validator();
+ 
+  	// perform validation programmatically
+  	inputs.data("validator").checkValidity();
+
+
+
+</script>
 
 
   
