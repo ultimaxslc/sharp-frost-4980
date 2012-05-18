@@ -29,27 +29,22 @@
 	  'appId'  => AppInfo::appID(),
 	  'secret' => AppInfo::appSecret(),
 	));
+
+
+
+	$userInfo = ('100003799974031?access_token=217695998333463|wWD2XcNleVvnbgRj88myEUdSkcA');
+
+	$basic = $facebook->api($userInfo);
+	$location = idx($basic, 'location', array());
+
 	
-
-
-
-
-
-	$basic = $facebook->api('/ultimaxslc');
-
-
-
-
-
-
-
-
-
-	$user_id = $facebook->getUser();
+	
+	//$user_id = $facebook->getUser();
 	if ($user_id){
 		try {
 		    // Fetch the viewer's basic information
-		    $basic = $facebook->api('/ultimaxslc');
+		    //$basic = $facebook->api('/me?access_token=217695998333463|wWD2XcNleVvnbgRj88myEUdSkcA');
+		    //$location = idx($basic, 'location', array());
 		  } catch (FacebookApiException $e) {
 		    // If the call fails we check if we still have a user. The user will be
 		    // cleared if the error is because of an invalid accesstoken
@@ -58,13 +53,15 @@
 		      exit();
 		    }
 		}	
-	}	
+	}
+
+
 
 	/*
 	$host = ""; //hostname
 	$id = ""; //userid
-	$f_name = "";
-	$l_name = "";
+	$first_name = "";
+	$last_name = "";
 	$email = "";
 	$occupation = "";
 	$country = "";
@@ -173,6 +170,7 @@
         js.src = "//connect.facebook.net/en_US/all.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
+
     </script>
 
 
@@ -185,26 +183,27 @@
 			<td>
 			<table width = "100%" border = "0" cellpadding = "3" cellspacing = "1">
 				<tr>
-					<td colspan = "3"><strong><center>Download & Play, Feedback & Win!</center></strong></td>
+					<td colspan = "3"><h1><center>
+						dW Download2Win</center>
+					</h1></td>
 				</tr>
+
 				<tr>
 					<td colspan = "3" width="100%">
 						<p align="center">Download any of the software over at developerWorks. Take a spin of the software, and take a screenshot of aspect you wish to feedback!
-							Submit your feedback along with screenshot, and stand a chance to win free certification for IBM products!</p>
-						<div align = "center"><textarea class="input-xlarge" rows ="5" style="resize:none" placeholder="Feedback goes here!" autofocus></textarea>
-						</div>
+							Submit your screenshot along with feedback, and stand a chance to win free certification for IBM products!</p>
 					</td>
 				</tr>
 				<tr>
 					<td colspan = "2">
-					<label class="control-label" for="f_name"> First Name:</label> <input class="input-xlarge" name="f_name" type="text" id="f_name" required="required" value="<?php echo he(idx($basic, 'first_name')); ?>">
+					<label class="control-label" for="first_name"> First Name:</label> <input class="input-xlarge" name="first_name" type="text" id="first_name" required="required" value="<?php echo he(idx($basic, 'first_name')); ?>">
 					</td>
-					<td colspan = "2"><label class="control-label" for="l_name"> Last Name:</label> <input class="input-xlarge" name="l_name" type="text" id="l_name" required="required" value="<?php echo he(idx($basic, 'last_name')); ?>"></td>
+					<td colspan = "2"><label class="control-label" for="last_name"> Last Name:</label> <input class="input-xlarge" name="last_name" type="text" id="last_name" required="required" value="<?php echo he(idx($basic, 'last_name')); ?>"></td>
 				</tr>
 
 				<tr>
 					<td colspan = "2">
-					<label class="control-label" for="occupation"> Occupation:</label> <input class="input-xlarge" name="occupation" type="text" required="required" id="occupation">
+					<label class="control-label" for="occupation"> Occupation:</label> <input class="input-xlarge" name="occupation" type="text" required="required" id="occupation" autofocus>
 					</td>
 					<td><label class="control-label" for="email"> Email:</label> <input class="input-xlarge" name="email" type="email" id="email" required="required" value="<?php echo he(idx($basic, 'email')); ?>"></td>
 
@@ -212,7 +211,7 @@
 
 				<tr>
 					<td colspan = "2">
-					<label class="control-label" for="country"> Country:</label> <input class="input-xlarge" name="country" type="text" id="country" required="required" value="<?php echo he(idx($basic, 'location')); ?>">
+					<label class="control-label" for="country"> Country:</label> <input class="input-xlarge" name="country" type="text" id="country" required="required" value="<?php echo he(idx($location, 'name')); ?>">
 					</td>
 					<td><label class="control-label" for="contactno"> Contact No:</label> <input class="input-xlarge" name="contactno" type="text" required="required" id="contactno" value=""></td>
 
@@ -228,14 +227,22 @@
 					</td>
 
 					<td colspan = "1"><center>
-					<label class="control-label" for="select01">How did you know of Download & Play?</label>  
-    	        	<select id="select01">  
+					<label class="control-label" for="howknow">How did you know of Download & Play?</label>  
+    	        	<select id="howknow" name="howknow">  
 		                <option>Friends</option>  
 	    	            <option>Faculty Email</option>  
 	        	        <option>Newsletter</option>  
 	            	    <option>Blog</option>  
 	                	<option>5</option>  
 			            </select></center>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan = "3">
+						<label class="control-label" for="feedback">Feedback (optional):</label>
+						<div><textarea name="feedback" id="feedback" class="input-xlarge" rows ="5" style="width: 557px; max-width: 557px" placeholder="Feedback goes here!"></textarea>
+						</div>
 					</td>
 				</tr>
 
